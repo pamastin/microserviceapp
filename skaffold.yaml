@@ -15,16 +15,16 @@ build:
         gitCommit:
           variant: AbbrevCommitSha
   artifacts:
-  - image: asia.gcr.io/devops-learning-347802/coit-backend1
-    context: coit-backend1
+  - image: asia.gcr.io/devops-learning-347802/demo-backend1
+    context: demo-backend1
     docker:
       dockerfile: Dockerfile-multistage
-  - image: asia.gcr.io/devops-learning-347802/coit-backend2
-    context: coit-backend2
+  - image: asia.gcr.io/devops-learning-347802/demo-backend2
+    context: demo-backend2
     docker:
       dockerfile: Dockerfile
-  - image: asia.gcr.io/devops-learning-347802/coit-frontend
-    context: coit-frontend
+  - image: asia.gcr.io/devops-learning-347802/demo-frontend
+    context: demo-frontend
     docker:
       dockerfile: Dockerfile-multistage
   local:
@@ -32,28 +32,28 @@ build:
 deploy:
   kubectl:
     manifests:
-    - resource-manifests/coit-backend1-deployment.yaml
-    - resource-manifests/coit-backend2-deployment.yaml
-    - resource-manifests/coit-frontend-deployment.yaml
-    - resource-manifests/service-coit-backend1-lb.yaml
-    - resource-manifests/service-coit-backend2.yaml
-    - resource-manifests/service-coit-frontend-lb.yaml
+    - resource-manifests/demo-backend1-deployment.yaml
+    - resource-manifests/demo-backend2-deployment.yaml
+    - resource-manifests/demo-frontend-deployment.yaml
+    - resource-manifests/service-demo-backend1-lb.yaml
+    - resource-manifests/service-demo-backend2.yaml
+    - resource-manifests/service-demo-frontend-lb.yaml
 profiles:
   - name: dev
     activation:
       - env: CURRENTENV=dev
     build:
       artifacts:
-      - image: coit-backend1
-        context: coit-backend1
+      - image: demo-backend1
+        context: demo-backend1
         docker:
           dockerfile: Dockerfile
-      - image: coit-backend2
-        context: coit-backend2
+      - image: demo-backend2
+        context: demo-backend2
         docker:
           dockerfile: Dockerfile
-      - image: coit-frontend
-        context: coit-frontend
+      - image: demo-frontend
+        context: demo-frontend
         docker:
           dockerfile: Dockerfile
       local:
@@ -62,27 +62,27 @@ profiles:
       kubeContext: arn:aws:eks:ap-south-1:210607809234:cluster/aws-mumbai-all
       kubectl:
         manifests:
-        - resource-manifests/coit-backend1-deployment.yaml
-        - resource-manifests/coit-backend2-deployment.yaml
-        - resource-manifests/coit-frontend-deployment.yaml
-        - resource-manifests/service-coit-backend1-lb.yaml
-        - resource-manifests/service-coit-backend2.yaml
-        - resource-manifests/service-coit-frontend-lb.yaml
+        - resource-manifests/demo-backend1-deployment.yaml
+        - resource-manifests/demo-backend2-deployment.yaml
+        - resource-manifests/demo-frontend-deployment.yaml
+        - resource-manifests/service-demo-backend1-lb.yaml
+        - resource-manifests/service-demo-backend2.yaml
+        - resource-manifests/service-demo-frontend-lb.yaml
   - name: production
     activation:
       - env: CURRENTENV=prod
     build:
       artifacts:
-      - image: coit-backend1
-        context: coit-backend1
+      - image: demo-backend1
+        context: demo-backend1
         docker:
           dockerfile: Dockerfile
-      - image: coit-backend2
-        context: coit-backend2
+      - image: demo-backend2
+        context: demo-backend2
         docker:
           dockerfile: Dockerfile
-      - image: coit-frontend
-        context: coit-frontend
+      - image: demo-frontend
+        context: demo-frontend
         docker:
           dockerfile: Dockerfile
       local:
@@ -91,19 +91,19 @@ profiles:
       kubeContext: arn:aws:eks:ap-south-1:210607809234:cluster/aws-mumbai-all
       kubectl:
         manifests:
-        - resource-manifests/coit-backend1-deployment.yaml
-        - resource-manifests/coit-backend2-deployment.yaml
-        - resource-manifests/coit-frontend-deployment.yaml
-        - resource-manifests/service-coit-backend1-lb.yaml
-        - resource-manifests/service-coit-backend2.yaml
-        - resource-manifests/service-coit-frontend-lb.yaml
+        - resource-manifests/demo-backend1-deployment.yaml
+        - resource-manifests/demo-backend2-deployment.yaml
+        - resource-manifests/demo-frontend-deployment.yaml
+        - resource-manifests/service-demo-backend1-lb.yaml
+        - resource-manifests/service-demo-backend2.yaml
+        - resource-manifests/service-demo-frontend-lb.yaml
 
 portForward:
 - resourceType: service
-  resourceName: coit-frontend-lb
+  resourceName: demo-frontend-lb
   port: 80
   localPort: 4500 # *Optional*
 - resourceType: service
-  resourceName: coit-backend1-lb
+  resourceName: demo-backend1-lb
   port: 80
   localPort: 4600 # *Optional*

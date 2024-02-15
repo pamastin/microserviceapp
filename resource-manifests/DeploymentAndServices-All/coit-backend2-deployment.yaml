@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: coit-backend2
+  name: demo-backend2
   labels:
-    app: coit-backend2
+    app: demo-backend2
 spec:
   selector:
      matchLabels:
-       app: coit-backend2
+       app: demo-backend2
   replicas: 2
   minReadySeconds: 15
   strategy:
@@ -18,11 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        app: coit-backend2
+        app: demo-backend2
     spec:
       containers:
         - image: basilvarghese/myapp-python:1.2.0
           imagePullPolicy: IfNotPresent
-          name: coit-backend2
+          name: demo-backend2
           ports:
             - containerPort: 5000

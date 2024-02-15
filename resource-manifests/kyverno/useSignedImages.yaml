@@ -16,7 +16,7 @@ spec:
               - Pod
       verifyImages:
       - imageReferences:
-        - "coitlearning/coit-frontend:*"
+        - "coitlearning/demo-frontend:*"
         attestors:
         - count: 1
           entries:

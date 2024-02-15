@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: coit-frontend
+  name: demo-frontend
   namespace: customer2
   annotations:
     ingressClassName: nginx
@@ -15,6 +15,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: coit-frontend-lb
+            name: demo-frontend-lb
             port:
               number: 80
