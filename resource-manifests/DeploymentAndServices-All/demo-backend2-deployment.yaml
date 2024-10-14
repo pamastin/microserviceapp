@@ -21,7 +21,7 @@ spec:
         app: demo-backend2
     spec:
       containers:
-        - image: basilvarghese/myapp-python:1.2.0
+        - image: pamastin/myapp-python:1.2.0
           imagePullPolicy: IfNotPresent
           name: demo-backend2
           ports:
