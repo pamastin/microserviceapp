@@ -21,7 +21,7 @@ spec:
         app: demo-backend1
     spec:
       containers:
-      - image: basilvarghese/myapp-java:1.2.0
+      - image: pamastin/myapp-java:1.2.0
         imagePullPolicy: IfNotPresent
         name: demo-backend1
         ports:
