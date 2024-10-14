@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/name: demo-frontend
     spec:
       containers:
-        - image: basilvarghese/demo-frontend:latest
+        - image: pamastin/demo-frontend:latest
           imagePullPolicy: IfNotPresent                         # 7
           name: demo-frontend
           ports:
